@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, useState, useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+
+function App() {
+  const [count, setCount] = useState(0);
+  useEffect(()=>{
+    document.title = count;
+  })
+  const increment = () => {
+    setCount(count+1);
   }
+  const  decrement = () => { 
+    setCount(count - 1) ; 
+  }
+  
+  return <div className='counter-wrapper'> 
+  <div className="counter">
+    <div className="number">
+      <span>{count}</span></div>
+      <div className="actions">
+        <button onClick={decrement} disabled={ count === 0}  className="before">  Before</button>
+        <button onClick={increment} disabled={ count === 99} className="after">After  </button>
+      </div>
+    </div>
+  </div>
 }
 
 export default App;
